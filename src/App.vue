@@ -1,16 +1,23 @@
 <template>
+  <Navbar />
+
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+
+  <!-- Equivalente al <router-outlet></router-outlet> de Angular -->
+  <router-view></router-view>
+
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineAsyncComponent, defineComponent } from 'vue';
+// import Navbar from './modules/shared/components/Navbar.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    // Navbar
+    // Así se hace el lazyload de un componente aquí
+    Navbar: defineAsyncComponent(() => import(/* webpackChunkName: "Navbar" */ '@/modules/shared/components/Navbar.vue'))
   }
 });
 </script>
